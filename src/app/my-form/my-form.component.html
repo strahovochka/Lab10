@@ -1,0 +1,52 @@
+<form [formGroup]="subjectForm" (ngSubmit)="onSubmit()">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Дисципліна</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Назва: </ion-label>
+        <ion-input id="name" type="text" formControlName="subjectName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Кафедра: </ion-label>
+        <ion-input id="department" type="text" formControlName="departmentName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Кількість лекцій: </ion-label>
+        <ion-input id="lecture-count" type="number" formControlName="lecturesCountNum"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Кількість лабораторних: </ion-label>
+        <ion-input id="labs-count" type="number" formControlName="labsCountNum"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Вид контролю: </ion-label>
+        <ion-input id="controll" type="text" formControlName="controllType"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Викладач лабораторних: </ion-label>
+        <ion-input id="labsProfName" type="text" formControlName="labsProfessorName"></ion-input>
+      </ion-item>
+      <ion-card formArray="lecturerNames">
+        <ion-card-header>
+          <ion-card-title>Лектори</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-button color="tertiary" (click)="addLecturer()">
+            <ion-icon slot="start" name="add"></ion-icon>
+            Додати лектора
+          </ion-button>
+          <ion-item *ngFor="let lecturer of getControls(); let i = index">
+            <ion-input type="text" formControlName="{{i}}" placeholder="ПІБ лектора"></ion-input>
+            <ion-button color="tertiary" (click)="deleteLecturer(i)">
+              <ion-icon slot="start" name="trash"></ion-icon>
+              Видалити
+            </ion-button>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </ion-card-content>
+  </ion-card>
+  <ion-button type="submit" color="blue" expand="block" fill="outline" [disabled]="!subjectForm.valid">Submit</ion-button>
+</form>

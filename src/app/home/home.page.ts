@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ViewformComponent } from '../viewform/viewform.component';
 
 @Component({
   selector: 'app-home',
